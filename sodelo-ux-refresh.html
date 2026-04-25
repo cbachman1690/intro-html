@@ -1,0 +1,360 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="SODELO — Southern Delaware Orchestra. Community concerts, auditions, volunteering, and donor support." />
+  <title>SODELO | Southern Delaware Orchestra</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --bg-soft: #1e293b;
+      --card: #ffffff;
+      --text: #0f172a;
+      --text-light: #e2e8f0;
+      --muted: #64748b;
+      --brand: #7c3aed;
+      --brand-2: #2563eb;
+      --accent: #f59e0b;
+      --radius: 14px;
+      --shadow: 0 10px 30px rgba(15, 23, 42, 0.16);
+      --max: 1100px;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif; color: var(--text); }
+    body { line-height: 1.55; background: #f8fafc; }
+
+    a { color: inherit; text-decoration: none; }
+
+    .skip-link {
+      position: absolute;
+      left: -9999px;
+      top: 0;
+      background: #fff;
+      padding: .6rem 1rem;
+      border-radius: 8px;
+      z-index: 1000;
+    }
+    .skip-link:focus { left: 1rem; top: 1rem; outline: 2px solid var(--brand); }
+
+    .container { width: min(var(--max), 92%); margin-inline: auto; }
+
+    header {
+      position: sticky;
+      top: 0;
+      background: rgba(15, 23, 42, .94);
+      backdrop-filter: blur(8px);
+      color: var(--text-light);
+      z-index: 99;
+      border-bottom: 1px solid rgba(255,255,255,.1);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 72px;
+      gap: 1rem;
+    }
+
+    .logo {
+      font-weight: 800;
+      letter-spacing: .04em;
+      font-size: 1.1rem;
+    }
+
+    .menu {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .menu a { padding: .5rem .65rem; border-radius: 8px; }
+    .menu a:hover, .menu a:focus-visible { background: rgba(255,255,255,.12); outline: none; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: .5rem;
+      border: 0;
+      border-radius: 999px;
+      padding: .72rem 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform .16s ease, box-shadow .16s ease;
+    }
+    .btn:hover { transform: translateY(-1px); }
+
+    .btn-primary { background: linear-gradient(120deg, var(--brand), var(--brand-2)); color: white; box-shadow: var(--shadow); }
+    .btn-outline { border: 1px solid rgba(255,255,255,.35); color: white; background: transparent; }
+
+    .hero {
+      background: radial-gradient(circle at 20% 20%, rgba(124,58,237,.45), transparent 50%),
+                  radial-gradient(circle at 80% 30%, rgba(37,99,235,.35), transparent 48%),
+                  var(--bg);
+      color: white;
+      padding: 5rem 0 4rem;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.25fr .95fr;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    h1 { font-size: clamp(2rem, 4vw, 3.2rem); line-height: 1.15; margin: 0 0 1rem; }
+    .lead { color: #dbeafe; max-width: 62ch; }
+
+    .hero-actions { display: flex; gap: .8rem; margin-top: 1.25rem; flex-wrap: wrap; }
+
+    .hero-card {
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.2);
+      border-radius: var(--radius);
+      padding: 1rem 1.1rem;
+    }
+    .hero-card h2 { margin: 0 0 .4rem; font-size: 1.05rem; }
+    .hero-card p { margin: 0; color: #e2e8f0; }
+
+    section { padding: 3.25rem 0; }
+    .section-title { font-size: clamp(1.4rem, 2.8vw, 2rem); margin: 0 0 .35rem; }
+    .section-sub { margin: 0 0 1.2rem; color: var(--muted); }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 1rem;
+      box-shadow: var(--shadow);
+    }
+
+    .tag {
+      display: inline-block;
+      font-size: .8rem;
+      font-weight: 600;
+      color: #4c1d95;
+      background: #ede9fe;
+      border-radius: 999px;
+      padding: .25rem .6rem;
+      margin-bottom: .55rem;
+    }
+
+    .stats {
+      background: #fff;
+      border-top: 1px solid #e2e8f0;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1rem;
+      text-align: center;
+    }
+
+    .stat-grid strong { display: block; font-size: 1.6rem; color: #111827; }
+    .stat-grid span { color: var(--muted); font-size: .9rem; }
+
+    .cta {
+      background: linear-gradient(120deg, #1d4ed8, #7c3aed);
+      color: white;
+      border-radius: 20px;
+      padding: 1.4rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    form {
+      background: white;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 1rem;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: .8rem;
+    }
+
+    label { font-size: .9rem; font-weight: 600; color: #334155; display: grid; gap: .35rem; }
+    input, select, textarea {
+      border: 1px solid #cbd5e1;
+      border-radius: 10px;
+      padding: .65rem .75rem;
+      font: inherit;
+    }
+    textarea { min-height: 110px; resize: vertical; }
+    .full { grid-column: 1 / -1; }
+
+    footer {
+      background: #0b1222;
+      color: #cbd5e1;
+      padding: 2rem 0;
+      margin-top: 2rem;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.3fr 1fr 1fr;
+      gap: 1rem;
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid,
+      .cards,
+      .stat-grid,
+      .footer-grid,
+      form {
+        grid-template-columns: 1fr;
+      }
+
+      .menu { display: none; }
+      .nav { min-height: 64px; }
+    }
+  </style>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <header>
+    <div class="container nav" aria-label="Main navigation">
+      <a class="logo" href="#">SODELO</a>
+      <nav class="menu">
+        <a href="#concerts">Concerts</a>
+        <a href="#involved">Get Involved</a>
+        <a href="#news">News</a>
+        <a href="#contact">Contact</a>
+        <a class="btn btn-outline" href="#donate">Donate</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <h1>Neighbors playing for neighbors.</h1>
+          <p class="lead">Southern Delaware Orchestra brings high-quality symphonic music to Sussex County through community concerts, education, and welcoming opportunities for musicians and volunteers.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#concerts">View Upcoming Events</a>
+            <a class="btn btn-outline" href="#involved">Audition / Volunteer</a>
+          </div>
+        </div>
+        <aside class="hero-card" aria-label="Next concert">
+          <h2>Next Up</h2>
+          <p><strong>Summer Pops Concert</strong><br>Saturday, July 12 · 7:00 PM<br>Cape Henlopen High School Auditorium</p>
+        </aside>
+      </div>
+    </section>
+
+    <section id="concerts" class="container">
+      <h2 class="section-title">Upcoming Concerts</h2>
+      <p class="section-sub">Make event details easy to scan with date, venue, accessibility notes, and a one-click CTA.</p>
+      <div class="cards">
+        <article class="card">
+          <span class="tag">Featured</span>
+          <h3>Summer Pops</h3>
+          <p>Family-friendly classics and movie themes.</p>
+          <p><strong>Jul 12 · 7:00 PM</strong><br>Cape Henlopen High School</p>
+          <a class="btn btn-primary" href="#">Get Tickets</a>
+        </article>
+        <article class="card">
+          <span class="tag">Community</span>
+          <h3>Holiday Celebration</h3>
+          <p>Seasonal favorites with guest choir.</p>
+          <p><strong>Dec 14 · 3:00 PM</strong><br>Lewes Public Library Hall</p>
+          <a class="btn btn-primary" href="#">Learn More</a>
+        </article>
+        <article class="card">
+          <span class="tag">Education</span>
+          <h3>Young Artists Showcase</h3>
+          <p>Student soloists from Sussex County.</p>
+          <p><strong>Mar 8 · 2:00 PM</strong><br>Milton Theatre</p>
+          <a class="btn btn-primary" href="#">Reserve Seat</a>
+        </article>
+      </div>
+    </section>
+
+    <section class="stats">
+      <div class="container stat-grid" aria-label="Organization highlights">
+        <div><strong>70+</strong><span>Active Musicians</span></div>
+        <div><strong>12</strong><span>Annual Programs</span></div>
+        <div><strong>2,500+</strong><span>Audience Members</span></div>
+        <div><strong>100%</strong><span>Community Focused</span></div>
+      </div>
+    </section>
+
+    <section id="involved" class="container">
+      <h2 class="section-title">Get Involved</h2>
+      <p class="section-sub">Give people a single, frictionless path to join as a musician, volunteer, or supporter.</p>
+      <div class="cta" id="donate">
+        <div>
+          <h3 style="margin:.1rem 0;">Support live music in Southern Delaware</h3>
+          <p style="margin:.25rem 0 0;">Donations help fund sheet music, venue costs, and education programs.</p>
+        </div>
+        <a href="#" class="btn btn-outline">Donate Now</a>
+      </div>
+    </section>
+
+    <section id="contact" class="container">
+      <h2 class="section-title">Contact & Mailing List</h2>
+      <p class="section-sub">Short forms outperform long forms; ask only for essentials and clarify response expectations.</p>
+      <form>
+        <label>Name
+          <input type="text" name="name" autocomplete="name" required>
+        </label>
+        <label>Email
+          <input type="email" name="email" autocomplete="email" required>
+        </label>
+        <label>I am interested in
+          <select name="interest" required>
+            <option value="">Choose one</option>
+            <option>Concert updates</option>
+            <option>Auditions</option>
+            <option>Volunteering</option>
+            <option>Donor opportunities</option>
+          </select>
+        </label>
+        <label>Preferred contact
+          <select name="contact_pref">
+            <option>Email</option>
+            <option>Phone</option>
+          </select>
+        </label>
+        <label class="full">Message
+          <textarea name="message" placeholder="How can we help?"></textarea>
+        </label>
+        <div class="full">
+          <button class="btn btn-primary" type="submit">Send message</button>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-grid">
+      <div>
+        <strong>SODELO · Southern Delaware Orchestra</strong>
+        <p>A nonprofit 501(c)(3) organization serving Sussex County through community-centered orchestral music.</p>
+      </div>
+      <div>
+        <strong>Quick Links</strong>
+        <p><a href="#concerts">Events</a><br><a href="#involved">Auditions & Volunteering</a><br><a href="#contact">Contact</a></p>
+      </div>
+      <div>
+        <strong>Contact</strong>
+        <p>info@sodelomusic.org<br>PO Box 83, Nassau, DE 19969</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
